@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="studentAdd">Add New</a>
+<div th:if="${msg != null}">${msg}</div>
+<div>
+    <table border="1" width="100%">
+        <tr th:each="std:${list}">
+            <td th:text="${std.id}"></td>
+            <td th:text="${std.name}"></td>
+            <td th:text="${#dates.format(std.birthDate, 'yyyy/MM/dd')}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
