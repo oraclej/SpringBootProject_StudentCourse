@@ -1,19 +1,16 @@
 package ir.oraclej.springbootproject_studentcourse.service;
 
 import ir.oraclej.springbootproject_studentcourse.UniversityException;
-import ir.oraclej.springbootproject_studentcourse.entity.CourseEntity;
 import ir.oraclej.springbootproject_studentcourse.entity.RegisterEntity;
 import ir.oraclej.springbootproject_studentcourse.entity.StudentEntity;
 import ir.oraclej.springbootproject_studentcourse.repo.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class StudentService {
+public class CourseService {
     @Autowired
     private StudentRepo studentRepo;
 
