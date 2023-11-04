@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("admin")
 public class StudentController {
     @Autowired
     private StudentService studentService;
@@ -31,7 +32,7 @@ public class StudentController {
     @PostMapping("/studentAdd")
     public String add(StudentEntity studentEntity) {
         studentService.addOne(studentEntity);
-        return "redirect:/studentList?msg=ok";
+        return "redirect:/admin/studentList?msg=ok";
     }
 
     @GetMapping("/studentAdd")
@@ -51,13 +52,13 @@ public class StudentController {
     @GetMapping("/studentDelete/{id}")
     public String delete(@PathVariable int id) {
         studentService.deleteOne(id);
-        return "redirect:/studentList?msg=ok";
+        return "redirect:/admin/studentList?msg=ok";
     }
 
     @PostMapping("/studentEdit")
     public String edit(StudentEntity studentEntity) {
         studentService.editOne(studentEntity);
-        return "redirect:/studentList?msg=ok";
+        return "redirect:/admin/studentList?msg=ok";
     }
 
     @GetMapping("/showCourseList/{sid}")
