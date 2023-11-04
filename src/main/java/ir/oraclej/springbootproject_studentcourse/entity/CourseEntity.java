@@ -2,11 +2,13 @@ package ir.oraclej.springbootproject_studentcourse.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity(name = "crs")
 @Table(name = "TBL_COURSE")
+@Data
 public class CourseEntity extends JPAEntity{
     @Id
     @Column(name = "CID", columnDefinition = "NUMBER")

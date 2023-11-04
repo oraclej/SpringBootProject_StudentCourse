@@ -9,28 +9,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a href="courseAdd">Add New</a>
-<div th:if="${param.msg != 'ok'}"><p th:text="#{msg.success}"></p></div>
+<a href="courseAdd">Add New Course</a>
+<div th:if="${param.msg == 'ok'}"><p th:text="#{msg.success}"></p></div>
 <div>
     <table border="1" width="100%" class="table table-hover">
         <thead>
         <tr>
             <td>Index</td>
-            <td>Term</td>
+            <td>ID</td>
             <td>Name</td>
-            <td>Grade</td>
+            <td>Unit</td>
             <td>Edit</td>
             <td>Delete</td>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="reg, iter:${regList}">
+        <tr th:each="crs, iter:${courseList}">
             <td th:text="${iter.index}"></td>
-            <td th:text="${reg.term}"></td>
-            <td th:text="${reg.course.name}"></td>
-            <td th:text="${reg.grade}"></td>
-            <td><a th:href="@{/courseEdit/{sid}-{cid}-{term}(sid=${reg.sid}, cid=${reg.cid}, term=${reg.term})}">Edit</a></td>
-            <td><a th:href="@{/studentDelete/{id}(id=${std.id})}">Delete</a></td>
+            <td th:text="${crs.id}"></td>
+            <td th:text="${crs.name}"></td>
+            <td th:text="${crs.unit}"></td>
+            <td><a th:href="@{/courseEdit/{cid}(cid=${crs.id})}">Edit</a></td>
+            <td><a th:href="@{/studentDelete/{cid}(cid=${crs.id})}">Delete</a></td>
         </tr>
         </tbody>
     </table>

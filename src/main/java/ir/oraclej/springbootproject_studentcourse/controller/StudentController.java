@@ -4,13 +4,11 @@ import ir.oraclej.springbootproject_studentcourse.UniversityException;
 import ir.oraclej.springbootproject_studentcourse.entity.StudentEntity;
 import ir.oraclej.springbootproject_studentcourse.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
@@ -60,5 +58,13 @@ public class StudentController {
     public String edit(StudentEntity studentEntity) {
         studentService.editOne(studentEntity);
         return "redirect:/studentList?msg=ok";
+    }
+
+    @GetMapping("/showCourseList/{sid}")
+    @ResponseBody
+    public ModelAndView list(@PathVariable int sid) {
+        ModelAndView mv = new ModelAndView("registerList.html");
+        mv.addObject("reglist", studentService.listCourses(sid));
+        return mv;
     }
 }
