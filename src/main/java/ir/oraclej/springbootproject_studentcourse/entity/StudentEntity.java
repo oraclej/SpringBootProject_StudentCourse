@@ -25,7 +25,7 @@ public class StudentEntity extends JPAEntity{
     @DateTimeFormat(pattern = "yyyyMMdd")
     private Date birthDate;
 
-    @OneToMany(targetEntity = RegisterEntity.class, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = RegisterEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "FK_SID", referencedColumnName = "SID")
     private List<RegisterEntity> registers;
 

@@ -11,12 +11,13 @@
 <body>
 <div>
 <div style="float: left"><a th:href="@{/admin/registerAdd/{sid}(sid=${std.id})}">Register New Course</a></div>
-<div style="float: right"><a th:href="@{/admin/studentList}">Student List</a></div>
-<div style="float: right"><a th:href="@{/admin/courseList}">Course List</a></div>
+<div style="float: right"><a th:href="@{/admin/studentList}">Student List</a>&nbsp;&nbsp;
+<a th:href="@{/admin/courseList}">Course List</a></div>
 </div>
-<p>
-<h4 th:text="${std.name}">Courses of </h4>
-</p>
+<br>
+<div>
+<h4 th:text="'Courses of '+ ${std.name}"></h4>
+</div>
 <div th:if="${param.msg == 'ok'}"><p th:text="#{msg.success}"></p></div>
 <div>
   <table border="1" width="100%" class="table table-hover">

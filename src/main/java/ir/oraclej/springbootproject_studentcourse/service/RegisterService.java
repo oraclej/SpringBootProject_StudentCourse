@@ -14,13 +14,25 @@ public class RegisterService {
     @Autowired
     private RegisterRepo registerRepo;
 
-    public void add(RegisterEntity registerEntity){
-        registerRepo.save(registerEntity);
+    public boolean add(RegisterEntity registerEntity){
+        try {
+            registerRepo.save(registerEntity);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    public void delete(RegisterPK registerPK){
-        Optional<RegisterEntity> byId = registerRepo.findById(registerPK);
-        registerRepo.delete(byId.get());
+    public boolean delete(RegisterPK registerPK){
+        try {
+            Optional<RegisterEntity> byId = registerRepo.findById(registerPK);
+            registerRepo.delete(byId.get());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public List<String> getListOfTerms(){

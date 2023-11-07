@@ -13,7 +13,8 @@
 <div style="float: left"><a href="studentAdd">Add New Student</a></div>
     <div style="float: right"><a href="courseList">Course Lists</a></div>
 </div>
-<div th:if="${param.msg == 'ok'}"><p th:text="#{msg.success}"></p></div>
+<div align="center" th:if="${param.msg != null && param.msg[0] == 'ok'}"><br><p th:text="#{msg.success}"></p><br></div>
+<div align="center" th:if="${param.msg != null && param.msg[0] == 'nok'}"><br><p th:text="#{msg.notsuccess}"></p><br></div>
 <div>
     <table border="1" width="100%" class="table table-hover">
         <thead>

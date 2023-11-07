@@ -26,10 +26,8 @@ public class StudentController {
 
     @PostMapping("/studentAdd")
     public String add(StudentEntity studentEntity) {
-        System.out.println("1111111111111");
-//        studentEntity.setWhoCreated(principal.getName());
-        studentService.addOne(studentEntity);
-        return "redirect:/admin/studentList?msg=ok";
+        boolean added = studentService.addOne(studentEntity);
+        return "redirect:/admin/studentList?msg="+(added?"ok":"nok");
     }
 
     @GetMapping("/studentAdd")
@@ -48,14 +46,14 @@ public class StudentController {
     }
     @GetMapping("/studentDelete/{id}")
     public String delete(@PathVariable int id) {
-        studentService.deleteOne(id);
-        return "redirect:/admin/studentList?msg=ok";
+        boolean deleted = studentService.deleteOne(id);
+        return "redirect:/admin/studentList?msg="+(deleted?"ok":"nok");
     }
 
     @PostMapping("/studentEdit")
     public String edit(StudentEntity studentEntity) {
-        studentService.editOne(studentEntity);
-        return "redirect:/admin/studentList?msg=ok";
+        boolean edited = studentService.editOne(studentEntity);
+        return "redirect:/admin/studentList?msg="+(edited?"ok":"nok");
     }
 
 }

@@ -20,7 +20,7 @@ public class CourseEntity extends JPAEntity{
     @Column(name = "UNIT", columnDefinition = "NUMBER")
     private int unit;
 
-    @OneToMany(targetEntity = RegisterEntity.class, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = RegisterEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "FK_CID", referencedColumnName = "CID")
     private List<RegisterEntity> registers;
 
