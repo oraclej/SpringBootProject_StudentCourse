@@ -17,12 +17,15 @@ import org.hibernate.validator.constraints.Range;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 public class RegisterEntity extends JPAEntity{
+//    @EmbeddedId
+//    private RegisterPK registerPK;
+
     @Id
-    @Column(name = "FK_SID", columnDefinition = "NUMBER", insertable = false, updatable = false)
+    @Column(name = "FK_SID", columnDefinition = "NUMBER")
     private int sid;
 
     @Id
-    @Column(name = "FK_CID", columnDefinition = "NUMBER", insertable = false, updatable = false)
+    @Column(name = "FK_CID", columnDefinition = "NUMBER")
     private int cid;
 
     @Column(name = "TERM", columnDefinition = "CHAR(3)")
@@ -30,21 +33,22 @@ public class RegisterEntity extends JPAEntity{
     private String term;
 
 
+
     @Column(name = "GRADE", columnDefinition = "NUMBER(4,2)")
     @Max(20) @Min(0)
     private double grade;
 
     @ManyToOne(targetEntity = StudentEntity.class)
-    @JoinColumn(name = "FK_SID", referencedColumnName = "SID")
+    @JoinColumn(name = "FK_SID", referencedColumnName = "SID", insertable = false, updatable = false)
     private StudentEntity studentEntity;
 
     @ManyToOne(targetEntity = CourseEntity.class)
-    @JoinColumn(name = "FK_CID", referencedColumnName = "CID")
+    @JoinColumn(name = "FK_CID", referencedColumnName = "CID", insertable = false, updatable = false)
     private CourseEntity courseEntity;
 
     public void setTerm(String term) throws UniversityException{
 
-        if(term.length() != 3)
+      /*  if(term.length() != 3)
             throw new UniversityException("Term should be 3 digits");
         char d1 = term.charAt(0);
         if(!(d1 == '0' || d1 == '9'))
@@ -54,7 +58,7 @@ public class RegisterEntity extends JPAEntity{
             throw new UniversityException("Invalid Term number");
         char d3 = term.charAt(2);
         if(!(d3 >= '1' && d3 <= '3'))
-            throw new UniversityException("Term number can be 1,2,3");
+            throw new UniversityException("Term number can be 1,2,3");*/
 
         this.term = term;
     }

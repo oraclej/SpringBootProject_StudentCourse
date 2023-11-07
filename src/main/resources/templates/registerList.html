@@ -9,32 +9,33 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a th:href="@{/admin/registerAdd/{sid}(sid=${sid})}">Register New Course</a>
+<div>
+<div style="float: left"><a th:href="@{/admin/registerAdd/{sid}(sid=${std.id})}">Register New Course</a></div>
+<div style="float: right"><a th:href="@{/admin/studentList}">Student List</a></div>
+<div style="float: right"><a th:href="@{/admin/courseList}">Course List</a></div>
+</div>
+<p>
+<h4 th:text="${std.name}">Courses of </h4>
+</p>
 <div th:if="${param.msg == 'ok'}"><p th:text="#{msg.success}"></p></div>
 <div>
   <table border="1" width="100%" class="table table-hover">
     <thead>
     <tr>
       <td>Index</td>
-      <td>ID</td>
       <td>Name</td>
+      <td>Grade</td>
       <td>Unit</td>
-      <td>Edit</td>
       <td>Delete</td>
     </tr>
     </thead>
-    <tbody th:with="sumUnit=0">
-    <tr th:each="reg, iter:${reglist}" th:with="sumUnit=${sumUnit + reg.courseEntity.unit}">
-      <td th:text="${iter.index}"></td>
-      <td th:text="${reg.cid}"></td>
+    <tbody >
+    <tr th:each="reg, iter:${reglist}">
+      <td th:text="${iter.index+1}"></td>
       <td th:text="${reg.courseEntity.name}"></td>
       <td th:text="${reg.grade}"></td>
       <td th:text="${reg.courseEntity.unit}"></td>
-      <td><a th:href="@{/courseEdit/{cid}-{cid}-{term}(sid=${reg.sid}, cid=${reg.cid}, term=${reg.term})}">Edit</a></td>
-      <td><a th:href="@{/studentDelete/{id}(id=${std.id})}">Delete</a></td>
-    </tr>
-    <tr>
-      <td align="right" colspan="7" th:text="${sumUnit}"></td>
+      <td><a th:href="@{/admin/registerDelete/{sid}-{cid}-{term}(sid=${reg.sid},cid=${reg.cid},term=${reg.term})}">Delete</a></td>
     </tr>
     </tbody>
   </table>

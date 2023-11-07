@@ -14,13 +14,13 @@ import java.io.Serializable;
 //@Data
 //@Embeddable
 public class RegisterPK implements Serializable {
-//    @Column(name = "FK_SID", columnDefinition = "NUMBER", insertable=false, updatable=false)
+//    @Column(name = "FK_SID", columnDefinition = "NUMBER")
     private int sid;
 
-//    @Column(name = "FK_CID", columnDefinition = "NUMBER", insertable=false, updatable=false)
+//    @Column(name = "FK_CID", columnDefinition = "NUMBER")
     private int cid;
 
-//    @Column(name = "TERM", columnDefinition = "CHAR(3)", insertable=false, updatable=false)
+//    @Column(name = "TERM", columnDefinition = "CHAR(3)")
     private String term;
 
 }
