@@ -51,7 +51,7 @@ public class StudentService {
         return studentRepo.findById(id);
     }
 
-    public List<RegisterEntity> listCourses(int sid){
+    public List<RegisterEntity> listRegisters(int sid){
         Optional<StudentEntity> one = studentRepo.findById(sid);
         if (!one.isPresent())
             throw new UniversityException("Invalid Student ID");

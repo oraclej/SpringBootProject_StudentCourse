@@ -5,7 +5,7 @@
   <title>Title</title>
 </head>
 <body>
-<form th:action="@{/studentEdit}" method="post" th:object="${student}">
+<form th:action="@{/admin/studentEdit}" method="post" th:object="${student}">
   <input type="hidden" name="id" th:field="*{id}"><br>
   <input type="text" name="name" placeholder="Enter the name" th:field="*{name}"><br>
   <input type="text" pattern="\d{4}\d{2}\d{2}" name="birthDate" th:field="*{birthDate}" placeholder="Enter birthdate (yyyymmdd)"><br>

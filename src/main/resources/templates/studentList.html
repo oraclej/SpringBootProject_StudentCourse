@@ -31,9 +31,9 @@
             <td th:text="${std.id}"></td>
             <td th:text="${std.name}"></td>
             <td th:text="${#dates.format(std.birthDate, 'yyyy/MM/dd')}"></td>
-            <td><a th:href="@{/showCourseList/{sid}(sid=${std.id})}">Courses</a></td>
-            <td><a th:href="@{/studentEdit/{id}(id=${std.id})}">Edit</a></td>
-            <td><a th:href="@{/studentDelete/{id}(id=${std.id})}">Delete</a></td>
+            <td><a th:href="@{showCourseList/{sid}(sid=${std.id})}">Courses</a></td>
+            <td><a th:href="@{studentEdit/{id}(id=${std.id})}">Edit</a></td>
+            <td><a th:href="@{studentDelete/{id}(id=${std.id})}">Delete</a></td>
         </tr>
         </tbody>
     </table>

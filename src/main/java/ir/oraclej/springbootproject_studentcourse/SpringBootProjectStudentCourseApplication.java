@@ -13,6 +13,6 @@ public class SpringBootProjectStudentCourseApplication implements WebMvcConfigur
     }
 
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addRedirectViewController("/", "/studentList");
+        registry.addRedirectViewController("/", "/admin/studentList");
     }
 }

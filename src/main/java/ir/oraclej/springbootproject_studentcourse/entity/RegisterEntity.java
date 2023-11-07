@@ -18,29 +18,32 @@ import org.hibernate.validator.constraints.Range;
 @NoArgsConstructor @AllArgsConstructor
 public class RegisterEntity extends JPAEntity{
     @Id
-    @Column(name = "FK_SID", columnDefinition = "NUMBER")
+    @Column(name = "FK_SID", columnDefinition = "NUMBER", insertable = false, updatable = false)
     private int sid;
 
     @Id
-    @Column(name = "FK_CID", columnDefinition = "NUMBER")
+    @Column(name = "FK_CID", columnDefinition = "NUMBER", insertable = false, updatable = false)
     private int cid;
 
     @Column(name = "TERM", columnDefinition = "CHAR(3)")
     @Id
     private String term;
 
+
     @Column(name = "GRADE", columnDefinition = "NUMBER(4,2)")
     @Max(20) @Min(0)
     private double grade;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = StudentEntity.class)
     @JoinColumn(name = "FK_SID", referencedColumnName = "SID")
     private StudentEntity studentEntity;
-    @ManyToOne
+
+    @ManyToOne(targetEntity = CourseEntity.class)
     @JoinColumn(name = "FK_CID", referencedColumnName = "CID")
     private CourseEntity courseEntity;
 
     public void setTerm(String term) throws UniversityException{
+
         if(term.length() != 3)
             throw new UniversityException("Term should be 3 digits");
         char d1 = term.charAt(0);
@@ -52,6 +55,7 @@ public class RegisterEntity extends JPAEntity{
         char d3 = term.charAt(2);
         if(!(d3 >= '1' && d3 <= '3'))
             throw new UniversityException("Term number can be 1,2,3");
+
         this.term = term;
     }
 }

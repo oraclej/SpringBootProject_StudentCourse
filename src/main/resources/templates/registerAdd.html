@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/admin/registerAdd}" method="post">
+  <input type="hidden" name="sid" th:value="${sid}">
+  Term: <select name="term">
+    <option th:each="term:${terms}" th:value="${term}" th:text="${term}"/>
+  </select>
+  <br>
+  Course: <select name="cid">
+    <option th:each="crs:${courseList}" th:value="${crs.id}" th:text="${crs.name}"/>
+  </select>
+  <br>
+  Grade: <input type="text" name="grade"><br>
+  <input type="submit" value="Save">
+</form>
+</body>
+</html>
