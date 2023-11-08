@@ -3,6 +3,9 @@ package ir.oraclej.springbootproject_studentcourse.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLUpdate;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -13,6 +16,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @EntityListeners(WhoEntities.class)
+//@SQLDelete(sql = "update tbl_student set deleted=1 where sid = ?")
+@Where(clause = "deleted = 0")
 public class StudentEntity extends JPAEntity{
     @Id
     @Column(name = "SID", columnDefinition = "NUMBER")

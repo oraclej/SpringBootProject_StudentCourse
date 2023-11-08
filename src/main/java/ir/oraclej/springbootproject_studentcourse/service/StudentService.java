@@ -34,14 +34,6 @@ public class StudentService {
             return false;
         }
     }
-    public boolean deleteOne(int id) {
-        try {
-            studentRepo.deleteById(id);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
     public List<StudentEntity> getAll(){
         return studentRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
@@ -58,5 +50,16 @@ public class StudentService {
         StudentEntity studentEntity = one.get();
         List<RegisterEntity> registers = studentEntity.getRegisters();
         return registers;
+    }
+
+    public boolean delete(String whod, int id) {
+        try {
+//            studentRepo.delete(studentEntity);
+            studentRepo.softDelete(whod, id);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

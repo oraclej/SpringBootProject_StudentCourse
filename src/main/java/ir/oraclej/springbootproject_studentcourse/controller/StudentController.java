@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -25,7 +27,8 @@ public class StudentController {
     }
 
     @PostMapping("/studentAdd")
-    public String add(StudentEntity studentEntity) {
+    public String add(Principal principal, StudentEntity studentEntity) {
+        studentEntity.setWhoCreated(principal.getName());
         boolean added = studentService.addOne(studentEntity);
         return "redirect:/admin/studentList?msg="+(added?"ok":"nok");
     }
@@ -45,13 +48,18 @@ public class StudentController {
         return mv;
     }
     @GetMapping("/studentDelete/{id}")
-    public String delete(@PathVariable int id) {
-        boolean deleted = studentService.deleteOne(id);
+    public String delete(Principal principal, @PathVariable int id) {
+//        StudentEntity studentEntity = studentService.getOne(id).get();
+//        studentEntity.setWhoDeleted(principal.getName());
+//        studentEntity.setDeletedDate(new Date());
+//        boolean deleted = studentService.delete(studentEntity);
+        boolean deleted = studentService.delete(principal.getName(), id);
         return "redirect:/admin/studentList?msg="+(deleted?"ok":"nok");
     }
 
     @PostMapping("/studentEdit")
-    public String edit(StudentEntity studentEntity) {
+    public String edit(Principal principal, StudentEntity studentEntity) {
+        studentEntity.setWhoUpdated(principal.getName());
         boolean edited = studentService.editOne(studentEntity);
         return "redirect:/admin/studentList?msg="+(edited?"ok":"nok");
     }
