@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
@@ -16,6 +17,7 @@ import org.hibernate.validator.constraints.Range;
 @IdClass(RegisterPK.class)
 @Data
 @NoArgsConstructor @AllArgsConstructor
+@Where(clause = "deleted = 0")
 public class RegisterEntity extends JPAEntity{
 //    @EmbeddedId
 //    private RegisterPK registerPK;

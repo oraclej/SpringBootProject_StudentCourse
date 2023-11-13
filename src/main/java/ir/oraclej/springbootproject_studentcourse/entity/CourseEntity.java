@@ -3,12 +3,14 @@ package ir.oraclej.springbootproject_studentcourse.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 
 @Entity(name = "crs")
 @Table(name = "TBL_COURSE")
 @Data
+@Where(clause = "deleted = 0")
 public class CourseEntity extends JPAEntity{
     @Id
     @Column(name = "CID", columnDefinition = "NUMBER")
